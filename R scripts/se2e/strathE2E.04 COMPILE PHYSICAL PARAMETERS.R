@@ -21,8 +21,8 @@ My_space <- readRDS("./Objects/Domains.rds") %>%                            # Ca
   mutate(Elevation = c(Elevation[1], -SDepth, Elevation[3] + SDepth)) %>% 
   mutate(Volume = area * abs(Elevation))
 
-#My_areas <- readRDS("./Objects/Sediment area proportions.rds") %>% 
-#  mutate(Habitat = paste0(Shore, " ", Bottom))
+My_areas <- readRDS("./Objects/Sediment area proportions.rds") %>% 
+  mutate(Habitat = paste0(Shore, " ", Bottom))
 
 #My_sediment <- readRDS("./Objects/Other habitat parameters.rds") %>% 
 #  mutate(Habitat = paste0(Shore, " ", Habitat))
@@ -31,25 +31,14 @@ Physical_parameters[1,"Value"] <- filter(My_space, Shore == "Offshore", Depth ==
 Physical_parameters[2,"Value"] <- filter(My_space, Shore == "Offshore", Depth == "D")$Elevation * -1 # Offshore_Deep_layer_thickness_(m)
 Physical_parameters[3,"Value"] <- filter(My_space, Shore == "Inshore", Depth == "S")$Elevation * -1  # Inshore_Shallow_layer_thickness_(m)
 
-## Dummy habitats
- Physical_parameters[5,"Value"] <- Physical_parameters[5,"Value"] * 0.9     # Area_proportion_of_inshore_rock_habitat_s0_(sum_of_all_8_habitat_areas_must=1)
- Physical_parameters[6,"Value"] <- Physical_parameters[6,"Value"] * 0.9     # Area_proportion_of_inshore_sediment_habitat_s1_(muddy)_(sum_of_all_8_habitat_areas_must=1)
- Physical_parameters[7,"Value"] <- Physical_parameters[7,"Value"] * 0.9     # Area_proportion_of_inshore_sediment_habitat_s2_(sandy)_(sum_of_all_8_habitat_areas_must=1)
- Physical_parameters[8,"Value"] <- Physical_parameters[8,"Value"] * 0.9     # Area_proportion_of_inshore_sediment_habitat_s3_(gravelly)_(sum_of_all_8_habitat_areas_must=1)
- Physical_parameters[9,"Value"] <- Physical_parameters[9,"Value"] * 0.9     # Area_proportion_of_offshore_rock_habitat_d0_(sum_of_all_8_habitat_areas_must=1)
- Physical_parameters[10,"Value"] <- Physical_parameters[10,"Value"] * 0.9   # Area_proportion_of_offshore_sediment_habitat_d1_(muddy)_(sum_of_all_8_habitat_areas_must=1)
- Physical_parameters[11,"Value"] <- Physical_parameters[11,"Value"] * 0.9   # Area_proportion_of_offshore_sediment_habitat_d2_(sandy)_(sum_of_all_8_habitat_areas_must=1)
- Physical_parameters[12,"Value"] <- Physical_parameters[12,"Value"] * 0.9   # Area_proportion_of_offshore_sediment_habitat_d3_(gravelly)_(sum_of_all_8_habitat_areas_must=1)
- Physical_parameters[13,"Value"] <- 0.1                                     # Area_proportion_of_deep_ocean_boundary_(false_seabed)_(sum_of_all_8_seabed_habitat_areas_plus_deep_ocean_boundary_must=1)
- 
-# Physical_parameters[5,"Value"] <- filter(My_areas, Habitat == "Inshore Rock")$Cover      # Area_proportion_of_inshore_rock_habitat_s0_(sum_of_all_8_habitat_areas_must=1)
-# Physical_parameters[6,"Value"] <- filter(My_areas, Habitat == "Inshore Silt")$Cover      # Area_proportion_of_inshore_sediment_habitat_s1_(muddy)_(sum_of_all_8_habitat_areas_must=1)
-# Physical_parameters[7,"Value"] <- filter(My_areas, Habitat == "Inshore Sand")$Cover      # Area_proportion_of_inshore_sediment_habitat_s2_(sandy)_(sum_of_all_8_habitat_areas_must=1)
-# Physical_parameters[8,"Value"] <- filter(My_areas, Habitat == "Inshore Gravel")$Cover    # Area_proportion_of_inshore_sediment_habitat_s3_(gravelly)_(sum_of_all_8_habitat_areas_must=1)
-# Physical_parameters[9,"Value"] <- filter(My_areas, Habitat == "Offshore Rock")$Cover     # Area_proportion_of_offshore_rock_habitat_d0_(sum_of_all_8_habitat_areas_must=1)
-# Physical_parameters[10,"Value"] <- filter(My_areas, Habitat == "Offshore Silt")$Cover    # Area_proportion_of_offshore_sediment_habitat_d1_(muddy)_(sum_of_all_8_habitat_areas_must=1)
-# Physical_parameters[11,"Value"] <- filter(My_areas, Habitat == "Offshore Sand")$Cover    # Area_proportion_of_offshore_sediment_habitat_d2_(sandy)_(sum_of_all_8_habitat_areas_must=1)
-# Physical_parameters[12,"Value"] <- filter(My_areas, Habitat == "Offshore Gravel")$Cover  # Area_proportion_of_offshore_sediment_habitat_d3_(gravelly)_(sum_of_all_8_habitat_areas_must=1)
+Physical_parameters[5,"Value"] <- filter(My_areas, Habitat == "Inshore Rock")$Cover      # Area_proportion_of_inshore_rock_habitat_s0_(sum_of_all_8_habitat_areas_must=1)
+Physical_parameters[6,"Value"] <- filter(My_areas, Habitat == "Inshore Silt")$Cover      # Area_proportion_of_inshore_sediment_habitat_s1_(muddy)_(sum_of_all_8_habitat_areas_must=1)
+Physical_parameters[7,"Value"] <- filter(My_areas, Habitat == "Inshore Sand")$Cover      # Area_proportion_of_inshore_sediment_habitat_s2_(sandy)_(sum_of_all_8_habitat_areas_must=1)
+Physical_parameters[8,"Value"] <- filter(My_areas, Habitat == "Inshore Gravel")$Cover    # Area_proportion_of_inshore_sediment_habitat_s3_(gravelly)_(sum_of_all_8_habitat_areas_must=1)
+Physical_parameters[9,"Value"] <- filter(My_areas, Habitat == "Offshore Rock")$Cover     # Area_proportion_of_offshore_rock_habitat_d0_(sum_of_all_8_habitat_areas_must=1)
+Physical_parameters[10,"Value"] <- filter(My_areas, Habitat == "Offshore Silt")$Cover    # Area_proportion_of_offshore_sediment_habitat_d1_(muddy)_(sum_of_all_8_habitat_areas_must=1)
+Physical_parameters[11,"Value"] <- filter(My_areas, Habitat == "Offshore Sand")$Cover    # Area_proportion_of_offshore_sediment_habitat_d2_(sandy)_(sum_of_all_8_habitat_areas_must=1)
+Physical_parameters[12,"Value"] <- filter(My_areas, Habitat == "Offshore Gravel")$Cover  # Area_proportion_of_offshore_sediment_habitat_d3_(gravelly)_(sum_of_all_8_habitat_areas_must=1)
 # Physical_parameters[13,"Value"] <- filter(My_areas, Habitat == "Overhang")$Cover         # Area_proportion_of_deep_ocean_boundary_(false_seabed)_(sum_of_all_8_seabed_habitat_areas_plus_deep_ocean_boundary_must=1)
   
  
