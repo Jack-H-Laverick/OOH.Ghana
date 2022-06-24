@@ -1,6 +1,6 @@
 
 ## Set repeated commands specific to the project region
-## This version is parameterised for the Ghanain shelf
+implementation <- "Ghana"
 
 library(sf)
 
@@ -8,9 +8,9 @@ library(sf)
 #EPSG2 <- filter(EPSG, str_detect(note, "Mauritania"))
 crs <- 4702                                                              # Specify the map projection for the project
 
-#lims <- c(xmin = -22, xmax = -9, ymin = 11, ymax = 22)# Specify limits of plotting window, also used to clip data grids
+lims <- c(xmin = --3.5, xmax = 1.5, ymin = 4, ymax = 6.5)# Specify limits of plotting window, also used to clip data grids
 
-#zoom <- coord_sf(xlim = c(lims[["xmin"]], lims[["xmax"]]), ylim = c(lims[["ymin"]], lims[["ymax"]]), expand = FALSE) # Specify the plotting window for SF maps in this region
+zoom <- coord_sf(xlim = c(lims[["xmin"]], lims[["xmax"]]), ylim = c(lims[["ymin"]], lims[["ymax"]]), expand = FALSE) # Specify the plotting window for SF maps in this region
 
 ggsave_map <- function(filename, plot) {
   ggsave(filename, plot, scale = 1, width = 12, height = 10, units = "cm", dpi = 500)
@@ -29,7 +29,7 @@ shape <-  matrix %>%
   list() %>% 
   st_polygon() %>% 
   st_sfc() %>% 
-  st_sf(Region = "Ghana",.)
+  st_sf(Region = implementation,.)
   st_crs(shape) <- st_crs(4326)                                        
   shape <- st_transform(shape, crs = crs)
   return(shape)
@@ -45,7 +45,7 @@ Region_mask <- matrix(c(-18.5, 31.5,
   list() %>% 
   st_polygon() %>% 
   st_sfc() %>% 
-  st_sf(Region = "Ghana",.)
+  st_sf(Region = implementation,.)
 st_crs(Region_mask) <- st_crs(4326)                                        
 Region_mask <- st_transform(Region_mask, crs = crs)
 
@@ -82,7 +82,7 @@ river_expansion <- matrix(c(13, 73,
   list() %>% 
   st_polygon() %>% 
   st_sfc() %>% 
-  st_sf(Region = "Ghana",.)
+  st_sf(Region = implementation,.)
 st_crs(river_expansion) <- st_crs(4326)                                          
 river_expansion <- st_transform(river_expansion, crs = crs)
 
